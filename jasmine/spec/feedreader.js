@@ -58,6 +58,8 @@ $(function() {
 
     describe('The menu', function () {
 
+        const body = document.querySelector('body');
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -65,7 +67,6 @@ $(function() {
          */
 
          it('is hidden by default', function() {
-           const body = document.querySelector('body');
            expect(body.classList.contains('menu-hidden')).toBe(true); // If the body element contains the class "menu-hidden", the "slide-menu" class will have a negative translate value, which makes it appear off screen
          });
 
@@ -74,6 +75,14 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+          it('changes visibility when the menu icon is clicked', function() {
+            const menuIcon = document.querySelector('.menu-icon-link');
+            menuIcon.click(); // simulate mouse click on the menu icon
+            expect(body.classList.contains('menu-hidden')).toBe(false); // check whether the "menu-hidden" class was removed from the body element
+            menuIcon.click(); // simulate second click
+            expect(body.classList.contains('menu-hidden')).toBe(true); // check whether the "menu-hidden" class was added again
+          });
 
     });
 
