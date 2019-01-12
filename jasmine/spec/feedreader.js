@@ -64,6 +64,10 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
+         it('is hidden by default', function() {
+           const body = document.querySelector('body');
+           expect(body.classList.contains('menu-hidden')).toBe(true); // If the body element contains the class "menu-hidden", the "slide-menu" class will have a negative translate value, which makes it appear off screen
+         });
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
