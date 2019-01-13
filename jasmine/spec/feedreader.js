@@ -119,22 +119,21 @@ $(function() {
     * Remember, loadFeed() is asynchronous.
     */
 
-    let oldFeed;
+    let previousFeed;
     let newFeed;
 
     beforeEach(function(done) {
       loadFeed(0, function() { // Load a feed
-        oldFeed = document.querySelector('.feed').textContent; // Store old text content of the .feed container in a variable
-        done();
+        previousFeed = document.querySelector('.feed').innerHTML; // Store previous HTML of the .feed container in a variable
+        loadFeed(1, function() { // Load a new feed
+          newFeed = document.querySelector('.feed').innerHTML; // Store new HTML of the .feed container in a variable
+          done();
+        });
       });
     });
 
-    it('should change the content', function(done) {
-      loadFeed(1, function() { // Load a new feed
-        newFeed = document.querySelector('.feed').textContent; // Store new text content of the .feed container in a variable
-        expect(oldFeed).not.toEqual(newFeed); // Compare text contents: If they don't equal, the content has changed
-        done();
-      });
+    it('should change the content', function() {
+      expect(previousFeed).not.toEqual(newFeed); // Compare HTML: If they don't equal, the content has changed
     });
   });
 }());
