@@ -47,6 +47,7 @@ h2 {
 }
 
 .slide-menu {
+  width: 210px;
   position: absolute;
   z-index: 100;
   top: 3.5em;
